@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Start Json-Server
 
-To get json-server just run `json-server --watch db.json` into project directory.
+To get json-server just run `json-server --watch db.json --port 8080` into project directory.
 
 ## Json-server Routes
 

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 
-import { ufs as UF_LIST } from './ufs';
+import { ufs as UF_LIST } from '../../ufs.mock';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { UserService } from 'src/app/services/user.service';
 import { UserInterface } from 'src/app/interfaces/users.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
+class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
@@ -54,10 +54,17 @@ export class UserCreateComponent implements OnInit {
     payload = this.formulario.value;
 
     if(!this.formulario.invalid) {
-      this.service.createUser(payload);
-      this.openSnackBar('Cadastro efetuado com sucesso', 'Fechar');
+      this.service.createUser(payload).subscribe(response => {
+        
+      },
+      err => {
+        this.openSnackBar('Erro ao cadastrar', 'Fechar');
+      }, ()=> {
+        this.openSnackBar('Cadastro efetuado com sucesso', 'Fechar');
+      });
+      
     } else {
-      this.openSnackBar('Erro ao cadastrar usuário', 'Fechar');
+      this.openSnackBar('Formulário não foi preenchido corretamente', 'Fechar');
     }
   }
 

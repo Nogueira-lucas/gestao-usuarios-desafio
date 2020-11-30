@@ -1,0 +1,25 @@
+.user_view {
+
+  &-header {
+    padding-left: 80px;
+    padding-top: 50px;
+  }
+
+  &-table {
+
+    @media screen and (min-width: 700px) {
+      .mat-table {
+        width: 1200px;
+        margin: 0 auto;
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      .mat-table {
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+
+  }
+}

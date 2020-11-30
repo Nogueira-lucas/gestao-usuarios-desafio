@@ -9,6 +9,8 @@ import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
+import { UserDetailsModalComponent } from './components/user-details-modal/user-details-modal.component';
+import { ShareComponentsModule } from './components/components.modules';
 
 
 @NgModule({
@@ -23,9 +25,11 @@ import { UserService } from './services/user.service';
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ShareComponentsModule
   ],
   providers: [UserService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [UserDetailsModalComponent]
 })
 export class AppModule { }

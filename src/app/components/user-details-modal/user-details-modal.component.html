@@ -1,0 +1,95 @@
+<div class="user_create">
+
+  <div class="user_create-container">
+
+    <div class="user_create-container-header">
+      <h1 class="mat-h1"><mat-icon>account_box</mat-icon> 
+        {{ data.isOnlyView? 'Usuário': 'Dados do Usuário'}}
+      </h1>
+      <mat-divider></mat-divider>
+    </div>
+
+    <form class="user_create-container-form"
+      [formGroup]="formulario">
+      <div class="user_create-container-form-grid">
+
+        <div class="row">
+          <mat-form-field 
+            class="user_create-container-form-grid-input_large">
+            <mat-label for="">Nome:</mat-label>
+            <input  matInput type="text"
+              [errorStateMatcher]="errorMatcher"
+              formControlName="nome" placeholder="Nome Completo">
+            <mat-hint>Digite o nome completo!</mat-hint>
+            <mat-error *ngIf="(formulario.get('nome')).hasError('required')">
+              Este campo está inválido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field 
+            class="user_create-container-form-grid-input_medium">
+            <mat-label for="">CPF:</mat-label>
+            <input matInput type="text"
+            formControlName="cpf">
+          </mat-form-field>
+          
+          <mat-form-field 
+            class="user_create-container-form-grid-input_medium">
+            <mat-label for="">CEP:</mat-label>
+            <input  matInput type="text"
+              formControlName="cep">
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field 
+            class="user_create-container-form-grid-input_large">
+            <mat-label for="">Logradouro:</mat-label>
+            <input  matInput type="text" 
+              formControlName="logradouro">
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field 
+            class="user_create-container-form-grid-input_medium">
+            <mat-label for="">Bairro:</mat-label>
+            <input matInput type="text" 
+              formControlName="bairro">
+          </mat-form-field>
+          
+          <mat-form-field 
+            class="user_create-container-form-grid-input_medium">
+            <mat-label for="">Cidade:</mat-label>
+            <input matInput type="text"
+              formControlName="localidade">
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field 
+            class="user_create-container-form-grid-input_medium">
+            <mat-label for="">UF:</mat-label>
+            <mat-select formControlName="uf">
+              <mat-option *ngFor="let uf of ufList" 
+                [disabled]="data.isOnlyView"
+                [value]="uf">{{uf}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-button color="primary" *ngIf="!data.isOnlyView"
+            class="user_create-container-form-grid-input_medium"
+            (click)="atualizar()">
+            Atualizar
+          </button>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

@@ -28,19 +28,11 @@ export class UserService {
   }
 
   deleteUserById(id: number) {
-    try {
-      return this.http.delete(`${this.baseUrl}/users/${id}`);
-    }catch(err) {
-      return err;
-    }
+    return this.http.delete(`${this.baseUrl}/users/${id}`);
   }
 
   updateUser(id: number, user: UserInterface) {
-    try {
-      return this.http.put(`${this.baseUrl}/users/${id}`, user);
-    }catch(err) {
-      return err;
-    }
+    return this.http.put(`${this.baseUrl}/users/${id}`, user);
   }
 
 }
